@@ -1159,7 +1159,7 @@ index 1b2abf9..aa1c53d 100644
 
 **Commit:** [`e0eb006`](https://github.com/walruto/VIBE-APEX/commit/e0eb006)
 
-```diff
+````diff
 diff --git a/docs/design-guidelines.png b/docs/design-guidelines.png
 new file mode 100644
 index 0000000..f0161aa
@@ -1311,7 +1311,7 @@ index dc1c2e1..76d1596 100644
    byId("drawerClose").addEventListener("click", closeDrawer);
    byId("modalBackdrop").addEventListener("click", closeDrawer);
    byId("drawerSave").addEventListener("click", () => openId && toggleSave(openId));
-```
+````
 
 #### B20
 
