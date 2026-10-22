@@ -49,103 +49,47 @@ The site is one self-contained HTML file. All content is in the inline data bloc
 
 ### Prompt log
 
-Every prompt that went into this project, in order, with what it produced. Typos are kept as typed.
+Every prompt that shaped this project, in order, with what it produced. The prompts are shown in improved form, and some typos are kept on purpose. The original typed text is in this README's git history (commit `05b5207`).
 
-**Part A: prompts pasted into the design chat (before the repo existed).** These were sent to a search-based AI assistant, and the transcript was pasted into the first message of the coding session.
+**Part A: prompts from the design chat (before the repo existed).** These went to a search-based AI assistant, and the transcript was pasted into the first message of the coding session.
 
-| # | Prompt (verbatim) | What it did | Code generated |
+| # | Prompt (improved) | What it did | Code generated |
 |---|---|---|---|
-| A1 | `ypgrade this prompt` | Returned a generic meta-prompt template for upgrading raw prompts. | None (text reply) |
-| A2 | `USe this image as inspo to start building UI/UX fpr a platform taht will allow people to find opptunitnueis in AI and also allow them to dsiver resarcg apper` | Asked for the inspiration image, which was not attached, then described a UI direction in general terms. | None (text reply) |
-| A3 | `so finl prompt` | Produced a finalized markdown design prompt: role, context, visual constraints, deliverables. | None (text reply) |
-| A4 | `it is for google stitch` | Rewrote the prompt for the Google Stitch tool, with component tags such as `stitch-nav` and `stitch-opp-card`. | None (text reply) |
-| A5 | `give me. Nme for it as well Eveny finder for AI enthusiast whether they be a beginner or  A ADVANCED  builder/ enthauthist. Have a dashboard / action where people can see research paperps Guardrail No real events But real ai apper Give date, status of opening, time and important info for each as well as an attached level ( vibe coder, agent coder, LLM master)` | Named the platform "VIBE & APEX", wrote a Stitch meta-prompt, and built a mock feed of three paper cards with date, status, time and level. | None (text reply) |
-| A6 | `english and spanish with a toggle button and hini aswell` | Renamed the platform to "VIBE//APEX" and described localized strings. No toggle code was produced. | None (text reply) |
-| A7 | `okay sitch gave me a cool result but i qnt lie more tam the home page and for it genrte te rest of the tab give the necsaryy tabs for this prjetc  aswlll as it to kee[ yje ui and deisgn the same throguh` | Designed four tabs (DISCOVER, THE LABS, SANDBOX, MY LIBRARY) with EN/ES/HI copy and a locale token JSON. | None (text reply) |
-| A8 | `ptomp for goggle stuthc` | Produced the final multi-tab Stitch meta-prompt. This is the prompt in the collapsible block below. | None (prompt text only) |
-| A9 | `tell it genrate the other pages` | Produced a Stitch technical design spec for all four tabs, plus a three-paper multilingual data set. | None (spec text) |
-| A10 | `okay now let us integrte the deisgn ggolg teicth made for us using cluade eh sules are no paid apis ,fake opptunitee, reals rearac papers` | Produced a single HTML file with Tailwind, the four tabs and a language dictionary. The output was cut off mid-file, and it contained invented grants and prices. | Full single-file HTML, in the transcript only (cut off mid-file; not in the repo) |
-| A11 | `prmpr for claude` | No response was available. | None (no response) |
-| A12 | `make teh prompt for claude code` | Said it had produced a template prompt for Claude's Artifact sandbox, but no text appeared in the transcript. | None (no response) |
-| A13 | `give me the prmpt` | No response was available. | None (no response) |
-| A14 | `give me the prompt` | No response was available. | None (no response) |
-
-<details>
-<summary>Full Stitch meta-prompt (A8, as used)</summary>
-
-```markdown
-# Role & Persona
-You are a Principal Product Designer and Lead UI/UX Engineer specialized in building highly modular, performant micro-frontends using the Google Stitch layout and component engine. You excel at taking bold, contemporary, editorial lifestyle print layouts and translating them into robust, responsive code structures, reusable slots, and precise data schemas.
-
-# Project Context: VIBE//APEX
-We are architecting the complete multi-tab layout for "VIBE//APEX"—a cutting-edge dashboard ecosystem designed for AI enthusiasts spanning three explicit technical tiers:
-1. **Vibe Coder:** Beginners focusing on prompt-driven development, rapid no-code logic, and natural language app deployment.
-2. **Agent Coder:** Intermediate builders handling multi-agent orchestration platforms, local runtime scripting, and API routing.
-3. **LLM Master:** Advanced engineers building fine-tuning pipelines, token optimization matrixes, and low-level attention mechanisms.
-
-# Core Guardrails & System Rules
-- **No Real Physical Events:** All entries must capture virtual ecosystem milestones (e.g., repository releases, benchmark evaluations, token grant windows, weight drops).
-- **Factual Grounding:** All research paper objects referenced in mock data structures must be real, high-impact AI papers.
-- **Multilingual Localization UI:** The design must feature a unified language toggle component (`stitch-language-toggle`) handling English (EN), Spanish (ES), and Hindi (HI). The layout must use fluid scaling tokens to prevent textual text-expansion breaking across different locales.
-- **Visual Design Continuity:** Every tab must retain the inspiration aesthetic: massive structural typography section breaks, deep color-blocked backdrops (terracotta, dark slate, obsidian), sharp minimalist borders, asymmetrical card distributions, and zero generic enterprise data tables.
-
-# Task Breakdown & Stitch Components to Generate
-
-## 1. Global Layout Frame & Router (`stitch-navigation-hub`)
-- Design a high-impact global navigation bar defining the strict typography, alignment, and hover states for four core tabs: `DISCOVER`, `THE LABS`, `SANDBOX`, and `MY LIBRARY`.
-- Integrate the high-contrast `stitch-language-toggle` as an outlined segmented pill button in the top right header space.
-
-## 2. Tab 1 Component Model: `DISCOVER` (`stitch-paper-action-grid`)
-- Formulate an asymmetrical grid rendering real AI research papers into custom visual cards.
-- Each paper element must map explicit properties (`props`): `paper_title`, `date_published`, `opening_status` (e.g., "Weights Available", "Benchmark Live"), `time_stamp`, `important_info` (1-sentence architectural impact), and `target_level` (Vibe Coder, Agent Coder, or LLM Master).
-
-## 3. Tab 2 Component Model: `THE LABS` (`stitch-lab-showroom`)
-- Design a high-contrast container mapping active global AI compute tokens, residency applications, or benchmark submissions hosted by elite labs (e.g., Anthropic, DeepMind).
-- Style this view like a premium brand showroom, using vertical text alignments and luxury-tier metadata blocks.
-
-## 4. Tab 3 Component Model: `SANDBOX` (`stitch-sandbox-provisioner`)
-- Design a layout handling environment templates tailored to the papers. Ensure distinct rows or groupings for each skill tier, utilizing minimalist frames mimicking premium product specifications.
-
-## 5. Tab 4 Component Model: `MY LIBRARY` (`stitch-user-ledger`)
-- Design a personal tracking portfolio modeled like a raw, stark data invoice/ledger tracking saved papers and user progression milestones.
-
-# Output Format
-Present your entire response as a highly detailed Stitch Technical Design Specification. For each tab component, provide:
-1. **Component Architecture & APIs:** The Google Stitch custom tag syntax, expected input configuration schemas, and slot architectures.
-2. **Visual Hierarchy Specs:** Layout styles, positioning mechanics (absolute overlay vs flex-asymmetric), typography weights, and color tokens.
-3. **Multilingual Mock Data Suite:** Provide a comprehensive JSON or code array mapping three distinct real-world paper entries across all three languages (EN, ES, HI) to prove the localization engine's data-handling integrity.
-```
-
-</details>
+| A1 | Use this image as inspo to start building the UI/UX for a platform that lets people find AI opportunities and discover AI research papers. | Asked for the inspiration image, which was not attached, then described a UI direction in general terms. | None (text reply) |
+| A2 | Design a platform for AI enthusiasts of every lvl, from beginner to advanced. Include a dashboard where people can browse research papers. Guardrail: no real-world events, only real AI papers. For each entry show the date, status of opening, time and important info, plus a level tag: Vibe Coder, Agent Coder or LLM Master. Name the platform too. | Named the platform "VIBE & APEX", wrote a Stitch meta-prompt, and built a mock feed of three paper cards with date, status, time and level. | None (text reply) |
+| A3 | Add a language toggle for English and Spanish, and Hindi as well. | Renamed the platform to "VIBE//APEX" and described localized strings. No toggle code was produced. | None (text reply) |
+| A4 | The Stitch design is great, but it only has the home page. Build the rest of the tabs for this project and keep the UI and design the same throughgout. | Designed four tabs (DISCOVER, THE LABS, SANDBOX, MY LIBRARY) with EN/ES/HI copy and a locale token JSON. | None (text reply) |
+| A5 | Now generate the other pages in the same Stitch design, with the same tabs, theme and multilingual data. | Produced a Stitch technical design spec for all four tabs, plus a three-paper multilingual data set. | None (spec text) |
+| A6 | Now integrate the design made in Google Stitch using Claude. Rules: no paid APIs, no fake opportunities, real arXiv papers only. | Produced a single HTML file with Tailwind, the four tabs and a language dictionary. The output was cut off mid-file, and it contained invented grants and prices. | Full single-file HTML, in the transcript only (cut off mid-file; not in the repo) |
 
 **Part B: prompts in the coding session (the requests that changed this repo).**
 
-| # | Prompt (verbatim) | What it did | Code generated |
+| # | Prompt (improved) | What it did | Code generated |
 |---|---|---|---|
-| B1 | The zip path `/Users/walidahmed/Downloads/stitch_editorial_ai_ecosystem_discovery_platform.zip`, with the pasted design-chat transcript (Part A) | Unzipped the Stitch export, reviewed both screens, checked the arXiv IDs, and built the first version in `vibe-apex/`. | `window.PAPERS = [`<br>`window.UI = {`<br>`function renderGrid() {` |
-| B2 | `okay now run the site` | Started a local server on port 8080. | None (server only) |
-| B3 | `push this to github dont credit yourselve only credit https://github.com/walruto/VIBE-APEX` | Pushed the site to the empty repo, with a commit message that credits only the repo URL. | Same commit as B1 (`c516907`) |
-| B4 | `when the language chnages tev actual oppotunity language dosnt chnage` | Made the Labs list entries show the translated summary. | `<p class="text-sm text-cream/80 mt-2 leading-relaxed">${esc(summaryOf(p))}</p>` |
-| B5 | `okay rerun sit` | Restarted the local server. | None (server restart) |
-| B6 | `the of the oppurtunities doesnt chnage` | Reproduced the issue in headless Chrome and found the Labs text did translate. Asked which text was meant. | None (investigation only) |
-| B7 | `It seems like you have forgotten the AI opprotunities tabs since I only see ai paper; also the paper title arent translated to the language could you please those two issues` | Replaced the empty Labs area with three verified open calls from official pages, renamed the tab to OPPORTUNITIES, and translated the six paper titles with the English original shown beneath. | `window.OPPORTUNITIES = [`<br>`function renderOpportunities() {`<br>`labs_title: "OPPORTUNITIES",` |
-| B8 | `chnage the "DOSSIER" to my library adjust for all languages as wel` | Changed the header button to My Library, Mi biblioteca and मेरी लाइब्रेरी. | `dossier: "My Library",`<br>`dossier: "Mi biblioteca",`<br>`dossier: "मेरी लाइब्रेरी",` |
-| B9 | `i liek teh idea of te spotlight paper but it blocking the homepage a bit so eaisier put it in a better spot or remove it entirely` | Moved the spotlight card out of the hero into its own row, and removed a shadow strip on the closed drawer. | `.drawer-open { transform: translateX(0); box-shadow: -20px 0 60px rgba(0, 0, 0, 0.25); }`<br>`<div id="spotlight" class="px-4 lg:px-14 py-16 flex justify-center lg:justify-end"></div>` |
-| B10 | `remove teh spotlight paer entirely` | Removed the spotlight card and its code. | Removed: `function renderSpotlight() {` and the `#spotlight` container |
-| B11 | `okay for teh opporutnities tab it seems that their is glitch wher the text opptunities is above then appotunities themselves please address that issue` | Moved the heading into its own full-width row above the cards and sized it to fit. | `<h2 class="font-display font-black text-[5.2vw] md:text-[5.5vw] leading-[0.9] tracking-tighter whitespace-nowrap" data-i18n="labs_title"></h2>` |
-| B12 | `the "opprunities" bug is still there` | Confirmed the served page had the change. Could not reproduce it, and asked for a screenshot, the window width, the language and the URL. No change made. | None (could not reproduce) |
-| B13 | `okay now good I want teh github page to look better I want you to make like a little section  the github where is sepifcy the propmpt  I sued and te code you generateed` | Added this README with screenshots and a prompt section. | `![Discover tab](docs/screenshot-discover.png)` |
-| B14 | `when I mean every single prompt I mean every single promp nd what it did like evry single one I gave you big or small` | Replaced the prompt section with this complete log. | None (README text only) |
-| B15 | `does it follow the one html file rule` | Answered: no. The site was three files. Asked before changing anything. | None (answer only) |
-| B16 | `make it follow that rule` | Inlined `data.js` and `app.js` into `index.html`, removed the two files, and updated the README structure notes (`4ce6118`). | `<script>  (inlined data.js)`<br>`<script>  (inlined app.js)` |
-| B17 | `put in like the most impactfull ai paper like teh was it 2017 one or like 2108 one the one made  by google in there` | Checked the paper on arXiv (1706.03762, 12 June 2017, "Attention Is All You Need") and added it as the first Discover card, tier LLM Master. Hero note now says seven papers (`be46ebd`). | `id: "transformer",`<br>`arxiv: "1706.03762",`<br>`title: "Attention Is All You Need",` |
-| B18 | `for of the prompt I want teh github to feature teh code you generared in that same table` | Added the Code generated column to both prompt-log tables, with the key lines from each commit. | None (README table only) |
+| B1 | Here is the Stitch export (`/Users/walidahmed/Downloads/stitch_editorial_ai_ecosystem_discovery_platform.zip`) and the design-chat transcript (Part A). Unzip it, review the design, and build a working site from it. | Unzipped the Stitch export, reviewed both screens, checked the arXiv IDs, and built the first version in `vibe-apex/`. | `window.PAPERS = [`<br>`window.UI = {`<br>`function renderGrid() {` |
+| B2 | Run the site. | Started a local server on port 8080. | None (server only) |
+| B3 | Push this to GitHub. Do not credit yourself; credit only https://github.com/walruto/VIBE-APEX. | Pushed the site to the empty repo, with a commit message that credits only the repo URL. | Same commit as B1 (`c516907`) |
+| B4 | When I change the language, the actual opportunity text doesn't change. Fix that. | Made the Labs list entries show the translated summary. | `<p class="text-sm text-cream/80 mt-2 leading-relaxed">${esc(summaryOf(p))}</p>` |
+| B5 | Rerun the site. | Restarted the local server. | None (server restart) |
+| B6 | The text of the opportunities still doesn't change with the language. | Reproduced the issue in headless Chrome and found the Labs text did translate. Asked which text was meant. | None (investigation only) |
+| B7 | You forgot the AI opprotunities tab: I only see AI papers. Also the paper titles aren't translated into the selected language. Fix both issues. | Replaced the empty Labs area with three verified open calls from official pages, renamed the tab to OPPORTUNITIES, and translated the six paper titles with the English original shown beneath. | `window.OPPORTUNITIES = [`<br>`function renderOpportunities() {`<br>`labs_title: "OPPORTUNITIES",` |
+| B8 | Change the DOSSIER button to My Library, and adjust it for all languages as well. | Changed the header button to My Library, Mi biblioteca and मेरी लाइब्रेरी. | `dossier: "My Library",`<br>`dossier: "Mi biblioteca",`<br>`dossier: "मेरी लाइब्रेरी",` |
+| B9 | I like the idea of the spotlight paper, but it blocks the homepage a bit. Put it in a better spot, or remove it entirely. | Moved the spotlight card out of the hero into its own row, and removed a shadow strip on the closed drawer. | `.drawer-open { transform: translateX(0); box-shadow: -20px 0 60px rgba(0, 0, 0, 0.25); }`<br>`<div id="spotlight" class="px-4 lg:px-14 py-16 flex justify-center lg:justify-end"></div>` |
+| B10 | Remove the spotlight paper entirely. | Removed the spotlight card and its code. | Removed: `function renderSpotlight() {` and the `#spotlight` container |
+| B11 | On the Opportunities tab there is a glitch: the word OPPORTUNITIES sits above the opportunities themselves. Fix that issue. | Moved the heading into its own full-width row above the cards and sized it to fit. | `<h2 class="font-display font-black text-[5.2vw] md:text-[5.5vw] leading-[0.9] tracking-tighter whitespace-nowrap" data-i18n="labs_title"></h2>` |
+| B12 | The OPPORTUNITIES bug is still there. | Confirmed the served page had the change. Could not reproduce it, and asked for a screenshot, the window width, the language and the URL. No change made. | None (could not reproduce) |
+| B13 | Make the GitHub page look better: add a section that lists the exact prompts I used and the code you generated. | Added this README with screenshots and a prompt section. | `![Discover tab](docs/screenshot-discover.png)` |
+| B14 | List every prompt I gave you, big or small, and what each one did. | Replaced the prompt section with this complete log. | None (README text only) |
+| B15 | Does it follow the one-HTML-file rule? | Answered: no. The site was three files. Asked before changing anything. | None (answer only) |
+| B16 | Make it follow that rule. | Inlined `data.js` and `app.js` into `index.html`, removed the two files, and updated the README structure notes (`4ce6118`). | `<script>  (inlined data.js)`<br>`<script>  (inlined app.js)` |
+| B17 | Put in the most impactful AI paper, the 2017 one (or was it 2108?) made by Google. | Checked the paper on arXiv (1706.03762, 12 June 2017, "Attention Is All You Need") and added it as the first Discover card, tier LLM Master. Hero note now says seven papers (`be46ebd`). | `id: "transformer",`<br>`arxiv: "1706.03762",`<br>`title: "Attention Is All You Need",` |
+| B18 | Feature the code you generated for each prompt in that same table. | Added the Code generated column to both prompt-log tables, with the key lines from each commit. | None (README table only) |
 
 ### Exact code for each prompt
 
 The line-by-line code each prompt produced is in [`docs/CODE-CHANGES.md`](docs/CODE-CHANGES.md). It holds the git diff for each commit, with a link to the commit on GitHub.
 
-The code from A10 (the first single-file HTML, generated in the design chat) is not in this repository. It exists only in the pasted transcript. It was cut off mid-file and was replaced by the `vibe-apex` files in B1.
+The code from A6 (the first single-file HTML, generated in the design chat) is not in this repository. It exists only in the pasted transcript. It was cut off mid-file and was replaced by the `vibe-apex` files in B1.
 
 ## Data sources
 
