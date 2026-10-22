@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>VIBE//APEX — Frontier AI Research Hub</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&family=Syne:wght@500;700;800;900&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com?plugins=forms"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            terracotta: '#A52A20',
+            obsidian: '#0C0C0E',
+            cream: '#FBF9F5',
+            'paper-cream': '#F3EFEA'
+          },
+          fontFamily: {
+            display: ['Syne', 'sans-serif'],
+            serif: ['"Instrument Serif"', 'Georgia', 'serif'],
+            mono: ['"JetBrains Mono"', 'monospace'],
+            sans: ['Inter', 'sans-serif']
+          }
+        }
+      }
+    };
+  </script>
+  <style>
+    .bg-grid-dots { background-image: radial-gradient(rgba(255,255,255,.22) 1.5px, transparent 1.5px); background-size: 28px 28px; }
+    .tab-pane { display: none; }
+    .tab-pane.is-active { display: block; }
+    .drawer-open { transform: translateX(0); }
+    .drawer-closed { transform: translateX(100%); box-shadow: none; }
+    .toast-show { opacity: 1; transform: translateY(0); }
+    .toast-hide { opacity: 0; transform: translateY(20px); }
+    ::selection { background: #A52A20; color: #fff; }
+  </style>
+</head>
+<body class="bg-cream text-[#111113] font-sans antialiased overflow-x-hidden">
+
+  <!-- NAVIGATION + LANGUAGE TOGGLE -->
+  <header class="sticky top-0 z-40 h-20 px-4 lg:px-14 flex items-center justify-between gap-4 border-b border-black/[0.08] bg-cream/95 backdrop-blur-md">
+    <a href="#" class="flex items-center gap-2 shrink-0" data-tab-link="discover">
+      <span class="font-display font-black text-2xl tracking-tighter">VIBE//APEX</span>
+      <span class="hidden sm:inline text-[10px] font-mono font-bold px-1.5 py-0.5 rounded bg-black text-white">VOL.06</span>
+    </a>
+
+    <nav class="hidden md:flex items-center gap-8">
+      <button class="nav-tab text-[11px] font-mono font-bold tracking-[0.24em] uppercase py-2 border-b-2 cursor-pointer" data-tab="discover" data-i18n="nav_discover"></button>
+      <button class="nav-tab text-[11px] font-mono font-bold tracking-[0.24em] uppercase py-2 border-b-2 cursor-pointer" data-tab="labs" data-i18n="nav_labs"></button>
+      <button class="nav-tab text-[11px] font-mono font-bold tracking-[0.24em] uppercase py-2 border-b-2 cursor-pointer" data-tab="sandbox" data-i18n="nav_sandbox"></button>
+      <button class="nav-tab text-[11px] font-mono font-bold tracking-[0.24em] uppercase py-2 border-b-2 cursor-pointer" data-tab="library" data-i18n="nav_library"></button>
+    </nav>
+
+    <div class="flex items-center gap-3">
+      <div class="flex items-center bg-paper-cream border border-black/10 rounded-full p-0.5 text-[11px] font-mono font-bold" role="group" aria-label="Language">
+        <button class="lang-btn px-2.5 py-1 rounded-full cursor-pointer" data-lang="en">EN</button>
+        <button class="lang-btn px-2.5 py-1 rounded-full cursor-pointer" data-lang="es">ES</button>
+        <button class="lang-btn px-2.5 py-1 rounded-full cursor-pointer" data-lang="hi">HI</button>
+      </div>
+      <button id="dossierBtn" class="flex items-center gap-2 px-4 py-2 rounded-full border border-[#111113] text-xs font-bold tracking-widest uppercase hover:bg-[#111113] hover:text-cream transition cursor-pointer">
+        <span data-i18n="dossier"></span>
+        <span id="libraryCount" class="w-5 h-5 rounded-full bg-terracotta text-[10px] text-white flex items-center justify-center font-mono font-bold">0</span>
+      </button>
+    </div>
+  </header>
+
+  <!-- MOBILE TABS -->
+  <div class="md:hidden flex justify-around bg-paper-cream border-b border-black/[0.08] px-2 py-2 overflow-x-auto">
+    <button class="nav-tab-m px-3 py-1.5 text-[10px] font-mono font-bold uppercase rounded-md cursor-pointer" data-tab="discover">Discover</button>
+    <button class="nav-tab-m px-3 py-1.5 text-[10px] font-mono font-bold uppercase rounded-md cursor-pointer" data-tab="labs">Labs</button>
+    <button class="nav-tab-m px-3 py-1.5 text-[10px] font-mono font-bold uppercase rounded-md cursor-pointer" data-tab="sandbox">Sandbox</button>
+    <button class="nav-tab-m px-3 py-1.5 text-[10px] font-mono font-bold uppercase rounded-md cursor-pointer" data-tab="library">Library</button>
+  </div>
+
+  <main>
+    <!-- ============ TAB 1: DISCOVER ============ -->
+    <section id="tab-discover" class="tab-pane">
+      <!-- Hero -->
+      <div class="relative bg-terracotta text-cream overflow-hidden bg-grid-dots">
+        <div class="px-4 lg:px-14 pt-10 pb-16 min-h-[560px] flex flex-col justify-between gap-10">
+          <div class="flex flex-col md:flex-row md:justify-between gap-4">
+            <div>
+              <p class="flex items-center gap-3 text-[11px] font-mono tracking-[0.2em] uppercase"><span class="w-2 h-2 rounded-full bg-cream"></span><span data-i18n="hero_kicker"></span></p>
+              <p class="font-serif italic text-4xl md:text-5xl mt-4" data-i18n="hero_tagline"></p>
+            </div>
+            <p class="text-xs font-mono text-cream/80 md:text-right max-w-xs" data-i18n="hero_note"></p>
+          </div>
+          <h1 class="font-display font-black text-[22vw] md:text-[17vw] leading-none tracking-tighter whitespace-nowrap text-cream/95 select-none" data-i18n="hero_title"></h1>
+        </div>
+        <!-- Floating spotlight card, filled by app.js -->
+        <div id="spotlight" class="absolute right-4 lg:right-14 top-1/2 -translate-y-1/2 w-[min(92vw,380px)] hidden lg:block"></div>
+      </div>
+      <div id="spotlightMobile" class="lg:hidden px-4 -mt-10 relative z-10"></div>
+
+      <!-- Divider -->
+      <div class="px-4 lg:px-14 py-20 overflow-hidden">
+        <p class="flex items-baseline gap-4 whitespace-nowrap">
+          <span class="font-serif italic text-5xl md:text-7xl text-black/60" data-i18n="the"></span>
+          <span class="font-display font-black text-[13vw] leading-none tracking-tight" data-i18n="breakthroughs"></span>
+        </p>
+      </div>
+
+      <!-- Persona filter + grid -->
+      <div class="px-4 lg:px-14 pb-24">
+        <div class="flex flex-wrap items-center gap-3 border-t border-black/10 pt-6 pb-8">
+          <span class="text-[11px] font-mono tracking-widest uppercase text-black/50 mr-2" data-i18n="filter_label"></span>
+          <button class="filter-btn px-4 py-1.5 rounded-full border text-[11px] font-mono font-bold uppercase cursor-pointer" data-filter="all" data-i18n="filter_all"></button>
+          <button class="filter-btn px-4 py-1.5 rounded-full border text-[11px] font-mono font-bold uppercase cursor-pointer" data-filter="vibe" data-i18n="lvl_vibe"></button>
+          <button class="filter-btn px-4 py-1.5 rounded-full border text-[11px] font-mono font-bold uppercase cursor-pointer" data-filter="agent" data-i18n="lvl_agent"></button>
+          <button class="filter-btn px-4 py-1.5 rounded-full border text-[11px] font-mono font-bold uppercase cursor-pointer" data-filter="master" data-i18n="lvl_master"></button>
+        </div>
+        <div id="paperGrid" class="grid gap-6 md:grid-cols-2 xl:grid-cols-3"></div>
+      </div>
+    </section>
+
+    <!-- ============ TAB 2: THE LABS ============ -->
+    <section id="tab-labs" class="tab-pane bg-obsidian text-cream min-h-[90vh] px-4 lg:px-14 py-16">
+      <div class="grid gap-10 lg:grid-cols-12">
+        <div class="lg:col-span-5 lg:sticky lg:top-28 self-start">
+          <h2 class="font-display font-black text-[15vw] lg:text-[7vw] leading-[0.9] tracking-tighter" data-i18n="labs_title"></h2>
+          <p class="text-sm text-cream/60 mt-6 max-w-md leading-relaxed" data-i18n="labs_sub"></p>
+        </div>
+        <div class="lg:col-span-7 space-y-10">
+          <div class="rounded-2xl bg-[#141418] border border-white/10 p-8">
+            <p class="text-[11px] font-mono uppercase tracking-widest text-terracotta" data-i18n="labs_empty_title"></p>
+            <p class="text-sm text-cream/70 mt-3 leading-relaxed" data-i18n="labs_empty_body"></p>
+          </div>
+          <div>
+            <p class="text-[11px] font-mono uppercase tracking-widest text-cream/50 mb-4" data-i18n="labs_groups"></p>
+            <ul id="labsList" class="divide-y divide-white/10 border-t border-white/10"></ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ TAB 3: SANDBOX ============ -->
+    <section id="tab-sandbox" class="tab-pane bg-cream px-4 lg:px-14 py-16 min-h-[90vh]">
+      <h2 class="font-display font-black text-[15vw] lg:text-[8vw] leading-[0.9] tracking-tighter" data-i18n="sandbox_title"></h2>
+      <p class="text-sm text-black/60 mt-6 max-w-2xl leading-relaxed" data-i18n="sandbox_sub"></p>
+      <div id="sandboxTracks" class="mt-12 grid gap-6 lg:grid-cols-3"></div>
+    </section>
+
+    <!-- ============ TAB 4: MY LIBRARY ============ -->
+    <section id="tab-library" class="tab-pane bg-cream px-4 lg:px-14 py-16 min-h-[90vh]">
+      <h2 class="font-display font-black text-[15vw] lg:text-[8vw] leading-[0.9] tracking-tighter" data-i18n="lib_title"></h2>
+      <p class="text-sm text-black/60 mt-6 max-w-2xl" data-i18n="lib_sub"></p>
+
+      <div class="mt-12 grid gap-10 lg:grid-cols-12">
+        <div class="lg:col-span-4 space-y-6">
+          <div class="border-t-2 border-black pt-4">
+            <p class="text-[11px] font-mono uppercase tracking-widest text-black/50" data-i18n="lib_count"></p>
+            <p id="libTotal" class="font-display font-black text-7xl leading-none mt-2">0</p>
+          </div>
+          <div class="border-t border-black/20 pt-4">
+            <p class="text-[11px] font-mono uppercase tracking-widest text-black/50 mb-3" data-i18n="lib_tiers"></p>
+            <div id="libTiers" class="space-y-2 text-sm font-mono"></div>
+          </div>
+          <button id="clearLibrary" class="text-xs font-mono font-bold uppercase underline text-terracotta cursor-pointer" data-i18n="lib_clear"></button>
+        </div>
+        <div class="lg:col-span-8">
+          <ul id="libList" class="divide-y divide-black/10 border-t-2 border-black"></ul>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="bg-obsidian text-cream/50 px-4 lg:px-14 py-8 text-[11px] font-mono">
+    <p data-i18n="footer"></p>
+  </footer>
+
+  <!-- DOSSIER DRAWER -->
+  <div id="modalBackdrop" class="fixed inset-0 bg-black/50 backdrop-blur-sm opacity-0 pointer-events-none transition-opacity z-50"></div>
+  <aside id="drawer" class="fixed top-0 right-0 h-full w-full max-w-lg bg-cream shadow-2xl overflow-y-auto z-50 drawer-closed transition-transform duration-300">
+    <div class="p-8">
+      <div class="flex items-center justify-between">
+        <span id="drawerLevel" class="text-[10px] font-mono font-bold uppercase px-2.5 py-1 rounded-full border"></span>
+        <button id="drawerClose" class="text-xs font-mono font-bold uppercase underline cursor-pointer" data-i18n="close"></button>
+      </div>
+      <h3 id="drawerTitle" class="font-display font-black text-3xl leading-tight mt-8"></h3>
+      <p id="drawerAuthors" class="text-sm text-black/60 mt-4"></p>
+      <dl class="grid grid-cols-2 gap-4 mt-8 text-sm font-mono border-t border-b border-black/10 py-5">
+        <div><dt class="text-[10px] uppercase text-black/50" data-i18n="lbl_status"></dt><dd id="drawerStatus" class="mt-1"></dd></div>
+        <div><dt class="text-[10px] uppercase text-black/50" data-i18n="lbl_date"></dt><dd id="drawerDate" class="mt-1"></dd></div>
+        <div><dt class="text-[10px] uppercase text-black/50" data-i18n="lbl_time"></dt><dd id="drawerTime" class="mt-1"></dd></div>
+        <div><dt class="text-[10px] uppercase text-black/50">arXiv</dt><dd id="drawerArxiv" class="mt-1"></dd></div>
+      </dl>
+      <p id="drawerSummary" class="text-base leading-relaxed mt-8"></p>
+      <p class="text-[10px] font-mono uppercase text-black/50 mt-8" data-i18n="lbl_abstract"></p>
+      <p id="drawerAbstract" class="text-sm text-black/70 leading-relaxed mt-2"></p>
+      <div class="mt-10 flex gap-3">
+        <button id="drawerSave" class="flex-1 py-3 rounded-full bg-obsidian text-cream text-xs font-bold tracking-widest uppercase cursor-pointer"></button>
+        <a id="drawerLink" target="_blank" rel="noopener" class="flex-1 py-3 rounded-full border border-black text-center text-xs font-bold tracking-widest uppercase"></a>
+      </div>
+    </div>
+  </aside>
+
+  <div id="toast" class="fixed bottom-6 left-1/2 -translate-x-1/2 bg-obsidian text-cream text-xs font-mono px-5 py-3 rounded-full shadow-xl transition-all toast-hide z-[60]"></div>
+
+  <script src="data.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
