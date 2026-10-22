@@ -117,6 +117,7 @@
         <div>
           <p class="font-display font-bold uppercase text-sm">${esc(p.authors)}</p>
           <p class="text-xs text-cream/60 mt-1">${esc(p.title)}</p>
+          <p class="text-sm text-cream/80 mt-2 leading-relaxed">${esc(summaryOf(p))}</p>
         </div>
         <a href="https://arxiv.org/abs/${esc(p.arxiv)}" target="_blank" rel="noopener" class="text-xs font-mono font-bold uppercase text-terracotta-light underline shrink-0">arXiv:${esc(p.arxiv)} ↗</a>
       </li>`).join("");
