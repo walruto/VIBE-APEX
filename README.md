@@ -22,6 +22,65 @@ Repository: https://github.com/walruto/VIBE-APEX
 - No invented opportunities. Every listed opportunity links to its official page, and closed calls are not shown as open.
 - Real papers only. Every arXiv ID and date was checked against arxiv.org.
 
+## Design system
+
+The look comes from the VIBE//APEX Editorial Luxury Architecture board, which was produced in Google Stitch. The board is in [`docs/design-guidelines.png`](docs/design-guidelines.png).
+
+![Design guidelines board](docs/design-guidelines.png)
+
+| Token | Value | Used for |
+|---|---|---|
+| Primary | `#A52A20` | Primary buttons, accents, hero background |
+| Secondary | `#0C0C0E` | Obsidian text and dark blocks |
+| Tertiary | `#1D7873` | Sandbox actions |
+| Neutral | `#FBF9F5` | Cream page background |
+| Headline | Syne | Section titles and card headings |
+| Body | Inter | Summaries and metadata text |
+| Label | JetBrains Mono | Tags, status badges, and buttons |
+
+Button variants (from the board): Primary, Secondary, Inverted and Outlined, implemented as `.btn-primary`, `.btn-secondary`, `.btn-inverted` and `.btn-outlined` in `index.html`. The hero uses `.btn-hero` for the featured-paper button on the red background.
+
+The tokens are defined as CSS variables in `:root` at the top of the `<style>` block in `index.html`.
+
+<details>
+<summary>Stitch prompt used for the design (verbatim)</summary>
+
+```markdown
+I like what you did so far # Role & Persona
+You are a Principal Product Designer and Lead UI/UX Engineer specialized in building highly modular, performant micro-frontends using the Google Stitch layout and component engine. You excel at taking bold, contemporary, editorial lifestyle print layouts and translating them into robust, responsive code structures, reusable slots, and precise data schemas.
+# Project Context: VIBE//APEX
+We are architecting the complete multi-tab layout for "VIBE//APEX"—a cutting-edge dashboard ecosystem designed for AI enthusiasts spanning three explicit technical tiers:
+1. **Vibe Coder:** Beginners focusing on prompt-driven development, rapid no-code logic, and natural language app deployment.
+2. **Agent Coder:** Intermediate builders handling multi-agent orchestration platforms, local runtime scripting, and API routing.
+3. **LLM Master:** Advanced engineers building fine-tuning pipelines, token optimization matrixes, and low-level attention mechanisms.
+# Core Guardrails & System Rules
+- **No Real Physical Events:** All entries must capture virtual ecosystem milestones (e.g., repository releases, benchmark evaluations, token grant windows, weight drops).
+- **Factual Grounding:** All research paper objects referenced in mock data structures must be real, high-impact AI papers.
+- **Multilingual Localization UI:** The design must feature a unified language toggle component (`stitch-language-toggle`) handling English (EN), Spanish (ES), and Hindi (HI). The layout must use fluid scaling tokens to prevent textual text-expansion breaking across different locales.
+- **Visual Design Continuity:** Every tab must retain the inspiration aesthetic: massive structural typography section breaks, deep color-blocked backdrops (terracotta, dark slate, obsidian), sharp minimalist borders, asymmetrical card distributions, and zero generic enterprise data tables.
+# Task Breakdown & Stitch Components to Generate
+## 1. Global Layout Frame & Router (`stitch-navigation-hub`)
+- Design a high-impact global navigation bar defining the strict typography, alignment, and hover states for four core tabs: `DISCOVER`, `THE LABS`, `SANDBOX`, and `MY LIBRARY`.
+- Integrate the high-contrast `stitch-language-toggle` as an outlined segmented pill button in the top right header space.
+## 2. Tab 1 Component Model: `DISCOVER` (`stitch-paper-action-grid`)
+- Formulate an asymmetrical grid rendering real AI research papers into custom visual cards.
+- Each paper element must map explicit properties (`props`): `paper_title`, `date_published`, `opening_status` (e.g., "Weights Available", "Benchmark Live"), `time_stamp`, `important_info` (1-sentence architectural impact), and `target_level` (Vibe Coder, Agent Coder, or LLM Master).
+## 3. Tab 2 Component Model: `THE LABS` (`stitch-lab-showroom`)
+- Design a high-contrast container mapping active global AI compute tokens, residency applications, or benchmark submissions hosted by elite labs (e.g., Anthropic, DeepMind).
+- Style this view like a premium brand showroom, using vertical text alignments and luxury-tier metadata blocks.
+## 4. Tab 3 Component Model: `SANDBOX` (`stitch-sandbox-provisioner`)
+- Design a layout handling environment templates tailored to the papers. Ensure distinct rows or groupings for each skill tier, utilizing minimalist frames mimicking premium product specifications.
+## 5. Tab 4 Component Model: `MY LIBRARY` (`stitch-user-ledger`)
+- Design a personal tracking portfolio modeled like a raw, stark data invoice/ledger tracking saved papers and user progression milestones.
+# Output Format
+Present your entire response as a highly detailed Stitch Technical Design Specification. For each tab component, provide:
+1. **Component Architecture & APIs:** The Google Stitch custom tag syntax, expected input configuration schemas, and slot architectures.
+2. **Visual Hierarchy Specs:** Layout styles, positioning mechanics (absolute overlay vs flex-asymmetric), typography weights, and color tokens.
+3. **Multilingual Mock Data Suite:** Provide a comprehensive JSON or code array mapping three distinct real-world paper entries across all three languages (EN, ES, HI) to prove the localization engine's data-handling integrity.
+```
+
+</details>
+
 ## Run it locally
 
 ```bash
@@ -84,6 +143,7 @@ Every prompt that shaped this project, in order, with what it produced. The prom
 | B16 | Make it follow that rule. | Inlined `data.js` and `app.js` into `index.html`, removed the two files, and updated the README structure notes (`4ce6118`). | `<script>  (inlined data.js)`<br>`<script>  (inlined app.js)` |
 | B17 | Put in the most impactful AI paper, the 2017 one (or was it 2108?) made by Google. | Checked the paper on arXiv (1706.03762, 12 June 2017, "Attention Is All You Need") and added it as the first Discover card, tier LLM Master. Hero note now says seven papers (`be46ebd`). | `id: "transformer",`<br>`arxiv: "1706.03762",`<br>`title: "Attention Is All You Need",` |
 | B18 | Feature the code you generated for each prompt in that same table. | Added the Code generated column to both prompt-log tables, with the key lines from each commit. | None (README table only) |
+| B19 | Generate the working HTML/CSS implementation for the hero component with interactive paper modal. Generate the rest of the tabs following this design. These are the prompts I used in Google Stitch and these are the design guidelines I used. Add them to GitHub. | Added a featured-paper button to the hero that opens the paper modal, a live search on the Discover tab, tier progress bars on My Library, and the design-system tokens and button styles from the board. Added the board image and the Stitch prompt to this README. | `--color-primary: #A52A20;`<br>`<button class="open-btn btn btn-hero mt-6" data-id="transformer" data-i18n="hero_featured"></button>`<br>`<input id="paperSearch" type="search" data-i18n-placeholder="search_placeholder" placeholder="">` |
 
 ### Exact code for each prompt
 
