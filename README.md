@@ -37,13 +37,13 @@ The page loads Tailwind CSS and Google Fonts from their CDNs, so it needs an int
 ## Project structure
 
 ```
-index.html   Page layout, Tailwind config, styles, and the four tab sections
-data.js      Papers, opportunities, sandbox commands, and EN/ES/HI strings
-app.js       Rendering, tab switching, language switch, filter, drawer, library
-docs/        Screenshots used in this README
+index.html   The whole site: page layout, Tailwind config, styles, the four tab
+             sections, the papers/opportunities/sandbox/strings data, and the
+             rendering script
+docs/        Screenshots and the code-change log used in this README
 ```
 
-All content is in `data.js`. To add a paper or opportunity, add an entry there. Opportunities need an official source URL and a checked deadline or "rolling" status.
+The site is one self-contained HTML file. All content is in the inline data block at the top of the script, near the start of the `<script>` tag before the rendering code. To add a paper or opportunity, add an entry there. Opportunities need an official source URL and a checked deadline or "rolling" status.
 
 ## How it was built
 
