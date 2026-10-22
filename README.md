@@ -47,19 +47,31 @@ All content is in `data.js`. To add a paper or opportunity, add an entry there. 
 
 ## How it was built
 
-This project started as a design brief. A design tool produced the editorial layout, and this repository turns that layout into a working site and then fixes it after review.
+### Prompt log
 
-### 1. Design prompt (design tool)
+Every prompt that went into this project, in order, with what it produced. Typos are kept as typed.
 
-The starting point was a meta-prompt for Google Stitch, a UI generation tool. It asked for:
+**Part A: prompts pasted into the design chat (before the repo existed).** These were sent to a search-based AI assistant, and the transcript was pasted into the first message of the coding session.
 
-- an editorial, high-contrast layout with large section-divider type, deep terracotta and obsidian colour blocks, and asymmetric card grids
-- a four-tab structure: Discover, The Labs, Sandbox, My Library
-- an EN/ES/HI language toggle
-- paper cards with title, date, status, time, a one-sentence summary and a skill-level tag
+| # | Prompt (verbatim) | What it did |
+|---|---|---|
+| A1 | `ypgrade this prompt` | Returned a generic meta-prompt template for upgrading raw prompts. |
+| A2 | `USe this image as inspo to start building UI/UX fpr a platform taht will allow people to find opptunitnueis in AI and also allow them to dsiver resarcg apper` | Asked for the inspiration image, which was not attached, then described a UI direction in general terms. |
+| A3 | `so finl prompt` | Produced a finalized markdown design prompt: role, context, visual constraints, deliverables. |
+| A4 | `it is for google stitch` | Rewrote the prompt for the Google Stitch tool, with component tags such as `stitch-nav` and `stitch-opp-card`. |
+| A5 | `give me. Nme for it as well Eveny finder for AI enthusiast whether they be a beginner or  A ADVANCED  builder/ enthauthist. Have a dashboard / action where people can see research paperps Guardrail No real events But real ai apper Give date, status of opening, time and important info for each as well as an attached level ( vibe coder, agent coder, LLM master)` | Named the platform "VIBE & APEX", wrote a Stitch meta-prompt, and built a mock feed of three paper cards with date, status, time and level. |
+| A6 | `english and spanish with a toggle button and hini aswell` | Renamed the platform to "VIBE//APEX" and described localized strings. No toggle code was produced. |
+| A7 | `okay sitch gave me a cool result but i qnt lie more tam the home page and for it genrte te rest of the tab give the necsaryy tabs for this prjetc  aswlll as it to kee[ yje ui and deisgn the same throguh` | Designed four tabs (DISCOVER, THE LABS, SANDBOX, MY LIBRARY) with EN/ES/HI copy and a locale token JSON. |
+| A8 | `ptomp for goggle stuthc` | Produced the final multi-tab Stitch meta-prompt. This is the prompt in the collapsible block below. |
+| A9 | `tell it genrate the other pages` | Produced a Stitch technical design spec for all four tabs, plus a three-paper multilingual data set. |
+| A10 | `okay now let us integrte the deisgn ggolg teicth made for us using cluade eh sules are no paid apis ,fake opptunitee, reals rearac papers` | Produced a single HTML file with Tailwind, the four tabs and a language dictionary. The output was cut off mid-file, and it contained invented grants and prices. |
+| A11 | `prmpr for claude` | No response was available. |
+| A12 | `make teh prompt for claude code` | Said it had produced a template prompt for Claude's Artifact sandbox, but no text appeared in the transcript. |
+| A13 | `give me the prmpt` | No response was available. |
+| A14 | `give me the prompt` | No response was available. |
 
 <details>
-<summary>Full Stitch meta-prompt (as used)</summary>
+<summary>Full Stitch meta-prompt (A8, as used)</summary>
 
 ```markdown
 # Role & Persona
@@ -106,37 +118,24 @@ Present your entire response as a highly detailed Stitch Technical Design Specif
 
 </details>
 
-Note: the design tool's output contained several problems that were corrected in this repo (see below).
+**Part B: prompts in the coding session (the requests that changed this repo).**
 
-### 2. Integration prompt
-
-The request that turned the design into code was:
-
-> okay now let us integrte the deisgn ggolg teicth made for us using cluade eh sules are no paid apis ,fake opptunitee, reals rearac papers
-
-In short: integrate the design, no paid APIs, no fake opportunities, real arXiv papers.
-
-### 3. Follow-up requests
-
-These were made in order, and each one changed the code:
-
-1. Make the site runnable locally.
-2. Push to GitHub, crediting only the repo URL.
-3. Translate the Labs list entries with the paper summary so they change with the language toggle.
-4. Add real AI opportunities to the tab and translate the paper titles.
-5. Rename the header's "Dossier" button to "My Library" in all three languages.
-6. Move the spotlight paper out of the hero, then remove it.
-7. Fix the Opportunities heading, which overlapped the first row of cards.
-8. Add this README.
-
-### 4. What was generated, and what was corrected
-
-The first generated code and the design tool's content had several problems. These were fixed:
-
-- **Wrong arXiv IDs.** 2410.05229 is GSM-Symbolic, not DSPy. SWE-agent is 2405.15793, not 2408.12788. The paper 2502.1098 does not resolve and was removed. Titles and dates were replaced with the values from arxiv.org.
-- **Invented opportunities.** The design's grants, prices and compute offers did not correspond to real calls. They were removed. The Opportunities tab now lists three calls checked against their official pages.
-- **Invented statistics.** Figures such as "64 active papers", grant pools and cluster status were removed.
-- **Fake provisioning.** The "Launch" buttons did nothing real. The Sandbox tab now shows copyable setup commands for public packages and repositories.
+| # | Prompt (verbatim) | What it did |
+|---|---|---|
+| B1 | The zip path `/Users/walidahmed/Downloads/stitch_editorial_ai_ecosystem_discovery_platform.zip`, with the pasted design-chat transcript (Part A) | Unzipped the Stitch export, reviewed both screens, checked the arXiv IDs, and built the first version in `vibe-apex/`. |
+| B2 | `okay now run the site` | Started a local server on port 8080. |
+| B3 | `push this to github dont credit yourselve only credit https://github.com/walruto/VIBE-APEX` | Pushed the site to the empty repo, with a commit message that credits only the repo URL. |
+| B4 | `when the language chnages tev actual oppotunity language dosnt chnage` | Made the Labs list entries show the translated summary. |
+| B5 | `okay rerun sit` | Restarted the local server. |
+| B6 | `the of the oppurtunities doesnt chnage` | Reproduced the issue in headless Chrome and found the Labs text did translate. Asked which text was meant. |
+| B7 | `It seems like you have forgotten the AI opprotunities tabs since I only see ai paper; also the paper title arent translated to the language could you please those two issues` | Replaced the empty Labs area with three verified open calls from official pages, renamed the tab to OPPORTUNITIES, and translated the six paper titles with the English original shown beneath. |
+| B8 | `chnage the "DOSSIER" to my library adjust for all languages as wel` | Changed the header button to My Library, Mi biblioteca and मेरी लाइब्रेरी. |
+| B9 | `i liek teh idea of te spotlight paper but it blocking the homepage a bit so eaisier put it in a better spot or remove it entirely` | Moved the spotlight card out of the hero into its own row, and removed a shadow strip on the closed drawer. |
+| B10 | `remove teh spotlight paer entirely` | Removed the spotlight card and its code. |
+| B11 | `okay for teh opporutnities tab it seems that their is glitch wher the text opptunities is above then appotunities themselves please address that issue` | Moved the heading into its own full-width row above the cards and sized it to fit. |
+| B12 | `the "opprunities" bug is still there` | Confirmed the served page had the change. Could not reproduce it, and asked for a screenshot, the window width, the language and the URL. No change made. |
+| B13 | `okay now good I want teh github page to look better I want you to make like a little section  the github where is sepifcy the propmpt  I sued and te code you generateed` | Added this README with screenshots and a prompt section. |
+| B14 | `when I mean every single prompt I mean every single promp nd what it did like evry single one I gave you big or small` | Replaced the prompt section with this complete log. |
 
 ## Data sources
 
@@ -144,6 +143,13 @@ The first generated code and the design tool's content had several problems. The
 - **Opportunities:** official pages for the Foresight Institute RFP (deadline 31 Oct 2026, 23:59 PDT), Inference.net AI Compute Grants (rolling) and the Swiss AI compute grant small-project track (rolling). The Swiss AI large call closed 14 Sep 2026 and is not listed as open.
 
 Opportunities change. Confirm the deadline and eligibility on the official page before applying.
+
+## What was corrected from the generated code and design
+
+- **Wrong arXiv IDs.** 2410.05229 is GSM-Symbolic, not DSPy. SWE-agent is 2405.15793, not 2408.12788. The paper 2502.1098 does not resolve and was removed. Titles and dates were replaced with the values from arxiv.org.
+- **Invented opportunities.** The design's grants, prices and compute offers did not correspond to real calls. They were removed. The Opportunities tab now lists three calls checked against their official pages.
+- **Invented statistics.** Figures such as "64 active papers", grant pools and cluster status were removed.
+- **Fake provisioning.** The "Launch" buttons did nothing real. The Sandbox tab now shows copyable setup commands for public packages and repositories.
 
 ## Known limitations
 
