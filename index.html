@@ -205,6 +205,25 @@
 
 window.PAPERS = [
   {
+    id: "transformer",
+    arxiv: "1706.03762",
+    level: "master",
+    status: "preprint_open",
+    date: "2017-06-12",
+    authors: "Vaswani, Shazeer, Parmar, Uszkoreit et al.",
+    title: "Attention Is All You Need",
+    titles: {
+      es: "La atención es todo lo que necesitas",
+      hi: "अटेंशन ही सब कुछ है"
+    },
+    abstract: "The dominant sequence transduction models are based on complex recurrent or convolutional neural networks in an encoder-decoder configuration. We propose a new simple network architecture, the Transformer, based solely on attention mechanisms, dispensing with recurrence and convolutions entirely. Experiments on two machine translation tasks show these models to be superior in quality while being more parallelizable and requiring significantly less time to train. Our model achieves 28.4 BLEU on the WMT 2014 English-to-German translation task, improving over the existing best results, including ensembles by over 2 BLEU.",
+    summary: {
+      en: "Introduces the Transformer, a model built only on attention with no recurrence or convolution. It is the architecture behind most modern LLMs.",
+      es: "Presenta el Transformer, un modelo basado solo en atención, sin recurrencia ni convoluciones. Es la arquitectura detrás de la mayoría de los LLM modernos.",
+      hi: "ट्रांसफ़ॉर्मर पेश करता है, एक ऐसा मॉडल जो केवल अटेंशन पर आधारित है, बिना रिकरेंस या कन्वोल्यूशन के। आज के अधिकतर LLM इसी आर्किटेक्चर पर आधारित हैं।"
+    }
+  },
+  {
     id: "deepseek",
     arxiv: "2501.12948",
     level: "master",
@@ -423,7 +442,7 @@ window.UI = {
     hero_kicker: "Frontier AI · Real arXiv papers",
     hero_title: "FRONTIER",
     hero_tagline: "Research, sorted by how deep you build.",
-    hero_note: "Six curated arXiv papers. No paid APIs. No invented opportunities.",
+    hero_note: "Seven curated arXiv papers. No paid APIs. No invented opportunities.",
     spotlight_label: "Spotlight paper",
     inspect: "Inspect dossier",
     save: "Save",
@@ -477,7 +496,7 @@ window.UI = {
     hero_kicker: "IA de frontera · Artículos reales de arXiv",
     hero_title: "FRONTERA",
     hero_tagline: "Investigación, ordenada según qué tan profundo construyas.",
-    hero_note: "Seis artículos de arXiv seleccionados. Sin APIs de pago. Sin oportunidades inventadas.",
+    hero_note: "Siete artículos de arXiv seleccionados. Sin APIs de pago. Sin oportunidades inventadas.",
     spotlight_label: "Artículo destacado",
     inspect: "Ver dosier",
     save: "Guardar",
@@ -531,7 +550,7 @@ window.UI = {
     hero_kicker: "फ्रंटियर AI · वास्तविक arXiv शोधपत्र",
     hero_title: "फ्रंटियर",
     hero_tagline: "शोध, आपके निर्माण के स्तर के अनुसार छँटा हुआ।",
-    hero_note: "छह चुने हुए arXiv शोधपत्र। कोई पेड API नहीं। कोई काल्पनिक अवसर नहीं।",
+    hero_note: "सात चुने हुए arXiv शोधपत्र। कोई पेड API नहीं। कोई काल्पनिक अवसर नहीं।",
     spotlight_label: "मुख्य शोधपत्र",
     inspect: "डोज़ियर देखें",
     save: "सहेजें",
