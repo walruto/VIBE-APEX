@@ -137,6 +137,12 @@ Present your entire response as a highly detailed Stitch Technical Design Specif
 | B13 | `okay now good I want teh github page to look better I want you to make like a little section  the github where is sepifcy the propmpt  I sued and te code you generateed` | Added this README with screenshots and a prompt section. |
 | B14 | `when I mean every single prompt I mean every single promp nd what it did like evry single one I gave you big or small` | Replaced the prompt section with this complete log. |
 
+### Exact code for each prompt
+
+The line-by-line code each prompt produced is in [`docs/CODE-CHANGES.md`](docs/CODE-CHANGES.md). It holds the git diff for each commit, with a link to the commit on GitHub.
+
+The code from A10 (the first single-file HTML, generated in the design chat) is not in this repository. It exists only in the pasted transcript. It was cut off mid-file and was replaced by the `vibe-apex` files in B1.
+
 ## Data sources
 
 - **Papers:** arXiv abstract pages and the arXiv API, checked on the dates shown on each card.
