@@ -32,7 +32,7 @@
     .bg-grid-dots { background-image: radial-gradient(rgba(255,255,255,.22) 1.5px, transparent 1.5px); background-size: 28px 28px; }
     .tab-pane { display: none; }
     .tab-pane.is-active { display: block; }
-    .drawer-open { transform: translateX(0); }
+    .drawer-open { transform: translateX(0); box-shadow: -20px 0 60px rgba(0, 0, 0, 0.25); }
     .drawer-closed { transform: translateX(100%); box-shadow: none; }
     .toast-show { opacity: 1; transform: translateY(0); }
     .toast-hide { opacity: 0; transform: translateY(20px); }
@@ -91,10 +91,9 @@
           </div>
           <h1 class="font-display font-black text-[22vw] md:text-[17vw] leading-none tracking-tighter whitespace-nowrap text-cream/95 select-none" data-i18n="hero_title"></h1>
         </div>
-        <!-- Floating spotlight card, filled by app.js -->
-        <div id="spotlight" class="absolute right-4 lg:right-14 top-1/2 -translate-y-1/2 w-[min(92vw,380px)] hidden lg:block"></div>
       </div>
-      <div id="spotlightMobile" class="lg:hidden px-4 -mt-10 relative z-10"></div>
+      <!-- Spotlight card sits in its own row below the hero, filled by app.js -->
+      <div id="spotlight" class="px-4 lg:px-14 py-16 flex justify-center lg:justify-end"></div>
 
       <!-- Divider -->
       <div class="px-4 lg:px-14 py-20 overflow-hidden">
@@ -171,7 +170,7 @@
 
   <!-- DOSSIER DRAWER -->
   <div id="modalBackdrop" class="fixed inset-0 bg-black/50 backdrop-blur-sm opacity-0 pointer-events-none transition-opacity z-50"></div>
-  <aside id="drawer" class="fixed top-0 right-0 h-full w-full max-w-lg bg-cream shadow-2xl overflow-y-auto z-50 drawer-closed transition-transform duration-300">
+  <aside id="drawer" class="fixed top-0 right-0 h-full w-full max-w-lg bg-cream overflow-y-auto z-50 drawer-closed transition-transform duration-300">
     <div class="p-8">
       <div class="flex items-center justify-between">
         <span id="drawerLevel" class="text-[10px] font-mono font-bold uppercase px-2.5 py-1 rounded-full border"></span>

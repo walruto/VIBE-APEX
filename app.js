@@ -79,7 +79,7 @@
   function renderSpotlight() {
     const p = paperById("deepseek");
     const html = `
-      <article class="bg-white rounded-3xl p-6 shadow-2xl text-[#111113]">
+      <article class="w-full max-w-sm bg-white rounded-3xl p-6 shadow-2xl text-[#111113]">
         <div class="flex items-center justify-between text-[10px] font-mono uppercase tracking-widest">
           <span class="text-terracotta">● ${esc(t("spotlight_label"))}</span>
           <span class="bg-paper-cream px-2 py-1 rounded">arXiv:${esc(p.arxiv)}</span>
@@ -96,7 +96,6 @@
         </div>
       </article>`;
     byId("spotlight").innerHTML = html;
-    byId("spotlightMobile").innerHTML = html;
   }
 
   // ---------- Discover grid ----------
