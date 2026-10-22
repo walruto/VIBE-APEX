@@ -75,29 +75,6 @@
       <span class="text-[10px] font-mono font-bold uppercase px-2 py-0.5 rounded-full border ${LEVEL_STYLES[p.level]}">${esc(levelLabel(p.level))}</span>`;
   }
 
-  // ---------- Spotlight (hero) ----------
-  function renderSpotlight() {
-    const p = paperById("deepseek");
-    const html = `
-      <article class="w-full max-w-sm bg-white rounded-3xl p-6 shadow-2xl text-[#111113]">
-        <div class="flex items-center justify-between text-[10px] font-mono uppercase tracking-widest">
-          <span class="text-terracotta">● ${esc(t("spotlight_label"))}</span>
-          <span class="bg-paper-cream px-2 py-1 rounded">arXiv:${esc(p.arxiv)}</span>
-        </div>
-        <h2 class="font-display font-black text-2xl leading-tight mt-5">${esc(titleOf(p))}</h2>
-        <p class="text-sm text-black/60 mt-4 leading-relaxed">${esc(summaryOf(p))}</p>
-        <div class="flex items-center justify-between mt-5 text-xs">
-          <span class="font-mono text-black/50">${esc(p.date)}</span>
-          <span class="text-[10px] font-mono font-bold uppercase px-2 py-0.5 rounded-full border ${LEVEL_STYLES[p.level]}">${esc(levelLabel(p.level))}</span>
-        </div>
-        <div class="flex gap-2 mt-6">
-          <button class="open-btn flex-1 py-3 rounded-full bg-obsidian text-white text-xs font-bold tracking-widest uppercase cursor-pointer" data-id="${p.id}">${esc(t("inspect"))} →</button>
-          <button class="save-btn w-12 rounded-full border border-black/20 cursor-pointer" data-id="${p.id}" aria-label="${esc(t("save"))}">${isSaved(p.id) ? "★" : "☆"}</button>
-        </div>
-      </article>`;
-    byId("spotlight").innerHTML = html;
-  }
-
   // ---------- Discover grid ----------
   function renderGrid() {
     const visible = PAPERS.filter((p) => filter === "all" || p.level === filter);
@@ -324,7 +301,6 @@
   }
 
   function refreshAll() {
-    renderSpotlight();
     renderFilters();
     renderGrid();
     renderOpportunities();
