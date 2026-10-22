@@ -37,6 +37,37 @@
     .toast-show { opacity: 1; transform: translateY(0); }
     .toast-hide { opacity: 0; transform: translateY(20px); }
     ::selection { background: #A52A20; color: #fff; }
+
+    /* Design system (from the VIBE//APEX Editorial Luxury Architecture board) */
+    :root {
+      --color-primary: #A52A20;
+      --color-primary-hover: #7A1E17;
+      --color-secondary: #0C0C0E;
+      --color-tertiary: #1D7873;
+      --color-neutral: #FBF9F5;
+      --color-inverted: #2B2B2E;
+      --color-surface: #F0EEEA;
+      --color-line: #D6D1CA;
+    }
+    .btn { display: inline-flex; align-items: center; justify-content: center; gap: .5rem; padding: .7rem 1.25rem; border-radius: 9999px; border: 1px solid transparent; font-family: 'JetBrains Mono', monospace; font-size: 11px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; cursor: pointer; transition: background-color .2s, color .2s, border-color .2s; }
+    .btn-primary { background: var(--color-primary); color: #fff; }
+    .btn-primary:hover { background: var(--color-primary-hover); }
+    .btn-secondary { background: var(--color-surface); color: var(--color-secondary); }
+    .btn-secondary:hover { background: var(--color-line); }
+    .btn-inverted { background: var(--color-inverted); color: var(--color-neutral); }
+    .btn-inverted:hover { background: var(--color-secondary); }
+    .btn-outlined { background: transparent; color: var(--color-primary); border-color: var(--color-primary); }
+    .btn-outlined:hover { background: var(--color-primary); color: #fff; }
+    .btn-tertiary { background: var(--color-tertiary); color: #fff; }
+    .btn-tertiary:hover { background: #155c57; }
+    .btn-hero { background: transparent; color: var(--color-neutral); border-color: rgba(251, 249, 245, .7); }
+    .btn-hero:hover { background: var(--color-neutral); color: var(--color-primary); }
+    .field { display: flex; align-items: center; gap: .75rem; padding: .75rem 1rem; background: var(--color-surface); border: 1px solid var(--color-line); border-radius: 6px; font-family: 'JetBrains Mono', monospace; font-size: 13px; color: var(--color-secondary); }
+    .field input { background: transparent; outline: none; width: 100%; color: inherit; }
+    .label { font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: .14em; text-transform: uppercase; }
+    .progress { height: 6px; background: #E4E0DA; border-radius: 9999px; overflow: hidden; }
+    .progress > span { display: block; height: 100%; background: var(--color-primary); transition: width .4s; }
+    .btn:focus-visible, .field input:focus-visible { outline: 2px solid var(--color-tertiary); outline-offset: 2px; }
   </style>
 </head>
 <body class="bg-cream text-[#111113] font-sans antialiased overflow-x-hidden">
@@ -86,6 +117,7 @@
             <div>
               <p class="flex items-center gap-3 text-[11px] font-mono tracking-[0.2em] uppercase"><span class="w-2 h-2 rounded-full bg-cream"></span><span data-i18n="hero_kicker"></span></p>
               <p class="font-serif italic text-4xl md:text-5xl mt-4" data-i18n="hero_tagline"></p>
+              <button class="open-btn btn btn-hero mt-6" data-id="transformer" data-i18n="hero_featured"></button>
             </div>
             <p class="text-xs font-mono text-cream/80 md:text-right max-w-xs" data-i18n="hero_note"></p>
           </div>
@@ -105,6 +137,7 @@
       <div class="px-4 lg:px-14 pb-24">
         <div class="flex flex-wrap items-center gap-3 border-t border-black/10 pt-6 pb-8">
           <span class="text-[11px] font-mono tracking-widest uppercase text-black/50 mr-2" data-i18n="filter_label"></span>
+          <label class="field w-full md:w-72 md:ml-auto order-last md:order-none"><span aria-hidden="true">⌕</span><input id="paperSearch" type="search" data-i18n-placeholder="search_placeholder" placeholder=""></label>
           <button class="filter-btn px-4 py-1.5 rounded-full border text-[11px] font-mono font-bold uppercase cursor-pointer" data-filter="all" data-i18n="filter_all"></button>
           <button class="filter-btn px-4 py-1.5 rounded-full border text-[11px] font-mono font-bold uppercase cursor-pointer" data-filter="vibe" data-i18n="lvl_vibe"></button>
           <button class="filter-btn px-4 py-1.5 rounded-full border text-[11px] font-mono font-bold uppercase cursor-pointer" data-filter="agent" data-i18n="lvl_agent"></button>
@@ -443,6 +476,8 @@ window.UI = {
     hero_title: "FRONTIER",
     hero_tagline: "Research, sorted by how deep you build.",
     hero_note: "Seven curated arXiv papers. No paid APIs. No invented opportunities.",
+    hero_featured: "Read the featured paper →",
+    search_placeholder: "Search papers…",
     spotlight_label: "Spotlight paper",
     inspect: "Inspect dossier",
     save: "Save",
@@ -497,6 +532,8 @@ window.UI = {
     hero_title: "FRONTERA",
     hero_tagline: "Investigación, ordenada según qué tan profundo construyas.",
     hero_note: "Siete artículos de arXiv seleccionados. Sin APIs de pago. Sin oportunidades inventadas.",
+    hero_featured: "Lee el artículo destacado →",
+    search_placeholder: "Buscar artículos…",
     spotlight_label: "Artículo destacado",
     inspect: "Ver dosier",
     save: "Guardar",
@@ -551,6 +588,8 @@ window.UI = {
     hero_title: "फ्रंटियर",
     hero_tagline: "शोध, आपके निर्माण के स्तर के अनुसार छँटा हुआ।",
     hero_note: "सात चुने हुए arXiv शोधपत्र। कोई पेड API नहीं। कोई काल्पनिक अवसर नहीं।",
+    hero_featured: "मुख्य शोधपत्र पढ़ें →",
+    search_placeholder: "शोधपत्र खोजें…",
     spotlight_label: "मुख्य शोधपत्र",
     inspect: "डोज़ियर देखें",
     save: "सहेजें",
@@ -606,6 +645,7 @@ window.UI = {
 
   let lang = readStorage(LANG_KEY, "en");
   let filter = "all";
+  let query = "";
   let library = readStorage(LIBRARY_KEY, []);
   let openId = null;
   let toastTimer = null;
@@ -678,7 +718,12 @@ window.UI = {
 
   // ---------- Discover grid ----------
   function renderGrid() {
-    const visible = PAPERS.filter((p) => filter === "all" || p.level === filter);
+    const q = query.toLowerCase();
+    const visible = PAPERS.filter((p) => {
+      const matchesLevel = filter === "all" || p.level === filter;
+      const haystack = [p.title, titleOf(p), p.authors, summaryOf(p), p.arxiv].join(" ").toLowerCase();
+      return matchesLevel && (!q || haystack.includes(q));
+    });
     byId("paperGrid").innerHTML = visible.map((p) => `
       <article class="bg-white border border-black/10 rounded-2xl p-6 flex flex-col gap-4 hover:border-black/30 transition">
         <div class="flex flex-wrap gap-2">${badges(p)}</div>
@@ -747,7 +792,7 @@ window.UI = {
         </div>
         <pre class="bg-black/60 rounded-lg p-4 text-[12px] font-mono text-cream/90 whitespace-pre-wrap break-all">${esc(tr.command)}</pre>
         <p class="text-xs text-cream/60 leading-relaxed">${esc(tr.note[lang] || tr.note.en)}</p>
-        <button class="copy-btn mt-auto py-2.5 rounded-full border border-white/30 text-xs font-bold tracking-widest uppercase hover:bg-cream hover:text-obsidian transition cursor-pointer" data-index="${i}">${esc(t("copy"))}</button>
+        <button class="copy-btn btn btn-tertiary mt-auto w-full" data-index="${i}">${esc(t("copy"))}</button>
       </article>`).join("");
   }
 
@@ -763,7 +808,8 @@ window.UI = {
     const tiers = ["vibe", "agent", "master"];
     byId("libTiers").innerHTML = tiers.map((lvl) => {
       const n = library.filter((id) => paperById(id) && paperById(id).level === lvl).length;
-      return `<div class="flex justify-between border-b border-black/5 pb-2"><span>${esc(levelLabel(lvl))}</span><span>${n}</span></div>`;
+      const share = Math.round((n / (library.length || 1)) * 100);
+      return `<div><div class="flex justify-between pb-1"><span>${esc(levelLabel(lvl))}</span><span>${n}</span></div><div class="progress"><span style="width:${share}%"></span></div></div>`;
     }).join("");
 
     const rows = library.map((id) => paperById(id)).filter(Boolean);
@@ -884,6 +930,9 @@ window.UI = {
     document.querySelectorAll("[data-i18n]").forEach((el) => {
       el.textContent = t(el.dataset.i18n);
     });
+    document.querySelectorAll("[data-i18n-placeholder]").forEach((el) => {
+      el.placeholder = t(el.dataset.i18nPlaceholder);
+    });
     document.querySelectorAll(".lang-btn").forEach((btn) => {
       const active = btn.dataset.lang === lang;
       btn.classList.toggle("bg-obsidian", active);
@@ -945,6 +994,10 @@ window.UI = {
     if (e.target.closest("#dossierBtn")) return showTab("library");
   });
 
+  byId("paperSearch").addEventListener("input", (e) => {
+    query = e.target.value.trim();
+    renderGrid();
+  });
   byId("drawerClose").addEventListener("click", closeDrawer);
   byId("modalBackdrop").addEventListener("click", closeDrawer);
   byId("drawerSave").addEventListener("click", () => openId && toggleSave(openId));
