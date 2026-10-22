@@ -68,6 +68,7 @@
     .progress { height: 6px; background: #E4E0DA; border-radius: 9999px; overflow: hidden; }
     .progress > span { display: block; height: 100%; background: var(--color-primary); transition: width .4s; }
     .btn:focus-visible, .field input:focus-visible { outline: 2px solid var(--color-tertiary); outline-offset: 2px; }
+    @media (max-width: 640px) { .hdr-label { display: none; } }
   </style>
 </head>
 <body class="bg-cream text-[#111113] font-sans antialiased overflow-x-hidden">
@@ -93,7 +94,7 @@
         <button class="lang-btn px-2.5 py-1 rounded-full cursor-pointer" data-lang="hi">HI</button>
       </div>
       <button id="dossierBtn" class="flex items-center gap-2 px-4 py-2 rounded-full border border-[#111113] text-xs font-bold tracking-widest uppercase hover:bg-[#111113] hover:text-cream transition cursor-pointer">
-        <span data-i18n="dossier"></span>
+        <span class="hdr-label" data-i18n="dossier"></span>
         <span id="libraryCount" class="w-5 h-5 rounded-full bg-terracotta text-[10px] text-white flex items-center justify-center font-mono font-bold">0</span>
       </button>
     </div>
@@ -243,6 +244,7 @@ window.PAPERS = [
     level: "master",
     status: "preprint_open",
     date: "2017-06-12",
+    published: "2017-06-12T17:57:34Z",
     authors: "Vaswani, Shazeer, Parmar, Uszkoreit et al.",
     title: "Attention Is All You Need",
     titles: {
@@ -262,6 +264,7 @@ window.PAPERS = [
     level: "master",
     status: "weights_available",
     date: "2025-01-22",
+    published: "2025-01-22T15:19:35Z",
     authors: "DeepSeek-AI, Guo, Yang, Zhang et al.",
     title: "DeepSeek-R1: Incentivizing Reasoning Capability in LLMs via Reinforcement Learning",
     titles: {
@@ -281,6 +284,7 @@ window.PAPERS = [
     level: "master",
     status: "code_released",
     date: "2024-07-11",
+    published: "2024-07-11T15:44:48Z",
     authors: "Shah, Bikshandi, Zhang, Thakkar, Ramani, Dao",
     title: "FlashAttention-3: Fast and Accurate Attention with Asynchrony and Low-precision",
     titles: {
@@ -300,6 +304,7 @@ window.PAPERS = [
     level: "agent",
     status: "code_released",
     date: "2024-05-06",
+    published: "2024-05-06T17:41:33Z",
     authors: "Yang, Jimenez, Wettig, Lieret, Yao, Narasimhan et al.",
     title: "SWE-agent: Agent-Computer Interfaces Enable Automated Software Engineering",
     titles: {
@@ -319,6 +324,7 @@ window.PAPERS = [
     level: "vibe",
     status: "code_released",
     date: "2023-10-05",
+    published: "2023-10-05T17:37:25Z",
     authors: "Khattab, Singhvi, Maheshwari, Zhang et al.",
     title: "DSPy: Compiling Declarative Language Model Calls into Self-Improving Pipelines",
     titles: {
@@ -336,8 +342,9 @@ window.PAPERS = [
     id: "gsm-symbolic",
     arxiv: "2410.05229",
     level: "agent",
-    status: "preprint_open",
+    status: "code_released",
     date: "2024-10-07",
+    published: "2024-10-07T17:36:37Z",
     authors: "Mirzadeh, Alizadeh, Shahrokhi, Tuzel, Bengio, Farajtabar",
     title: "GSM-Symbolic: Understanding the Limitations of Mathematical Reasoning in Large Language Models",
     titles: {
@@ -357,6 +364,7 @@ window.PAPERS = [
     level: "master",
     status: "preprint_open",
     date: "2026-07-09",
+    published: "2026-07-09T15:00:39Z",
     authors: "Song, Xinyuan; Cai, Zekun",
     title: "Heavy-Tailed Memory Traces in Long-Horizon Language Agents",
     titles: {
@@ -693,6 +701,10 @@ window.UI = {
     return PAPERS.find((p) => p.id === id);
   }
 
+  function timeOf(p) {
+    return p.published.slice(11, 16) + " UTC";
+  }
+
   function summaryOf(item) {
     return item.summary[lang] || item.summary.en;
   }
@@ -727,7 +739,7 @@ window.UI = {
     byId("paperGrid").innerHTML = visible.map((p) => `
       <article class="bg-white border border-black/10 rounded-2xl p-6 flex flex-col gap-4 hover:border-black/30 transition">
         <div class="flex flex-wrap gap-2">${badges(p)}</div>
-        <p class="text-[11px] font-mono text-black/50">arXiv:${esc(p.arxiv)} · ${esc(p.date)}</p>
+        <p class="text-[11px] font-mono text-black/50">arXiv:${esc(p.arxiv)} · ${esc(p.date)} · ${timeOf(p)}</p>
         <h3 class="font-display font-black text-xl leading-tight uppercase">${titleBlock(p, "")}</h3>
         <p class="text-sm text-black/60 leading-relaxed">${esc(summaryOf(p))}</p>
         <div class="mt-auto pt-4 border-t border-black/10 flex items-center justify-between">
@@ -819,7 +831,7 @@ window.UI = {
           <div>
             <div class="flex flex-wrap gap-2 mb-2">${badges(p)}</div>
             <p class="font-display font-bold uppercase text-sm leading-snug">${titleBlock(p, "")}</p>
-            <p class="text-[11px] font-mono text-black/50 mt-1">arXiv:${esc(p.arxiv)} · ${esc(p.date)}</p>
+            <p class="text-[11px] font-mono text-black/50 mt-1">arXiv:${esc(p.arxiv)} · ${esc(p.date)} · ${timeOf(p)}</p>
           </div>
           <div class="flex gap-3 shrink-0">
             <button class="open-btn text-xs font-mono font-bold uppercase text-terracotta underline cursor-pointer" data-id="${p.id}">${esc(t("inspect"))}</button>
@@ -840,7 +852,7 @@ window.UI = {
     byId("drawerAuthors").textContent = `${t("lbl_authors")}: ${p.authors}`;
     byId("drawerStatus").textContent = statusLabel(p.status);
     byId("drawerDate").textContent = p.date;
-    byId("drawerTime").textContent = t("time_na");
+    byId("drawerTime").textContent = timeOf(p);
     byId("drawerArxiv").textContent = p.arxiv;
     byId("drawerSummary").textContent = summaryOf(p);
     byId("drawerAbstract").textContent = p.abstract;
