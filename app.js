@@ -41,7 +41,9 @@
     const map = {
       code_released: { en: "Code Released", es: "Código publicado", hi: "कोड जारी" },
       weights_available: { en: "Weights Available", es: "Pesos disponibles", hi: "वेट्स उपलब्ध" },
-      preprint_open: { en: "Preprint Open", es: "Preprint abierto", hi: "प्रीप्रिंट खुला" }
+      preprint_open: { en: "Preprint Open", es: "Preprint abierto", hi: "प्रीप्रिंट खुला" },
+      open: { en: "Open", es: "Abierta", hi: "खुला" },
+      rolling: { en: "Rolling", es: "Continua", hi: "रोलिंग" }
     };
     return map[status][lang] || map[status].en;
   }
@@ -50,8 +52,21 @@
     return PAPERS.find((p) => p.id === id);
   }
 
-  function summaryOf(p) {
-    return p.summary[lang] || p.summary.en;
+  function summaryOf(item) {
+    return item.summary[lang] || item.summary.en;
+  }
+
+  // Translated title when one exists; the English original is shown beneath it.
+  function titleOf(p) {
+    return (p.titles && p.titles[lang]) || p.title;
+  }
+
+  function titleBlock(p, cls) {
+    const translated = titleOf(p);
+    const original = translated !== p.title
+      ? `<span class="block text-[11px] font-mono font-normal normal-case tracking-normal text-black/50 mt-2">${esc(p.title)}</span>`
+      : "";
+    return `<span class="${cls}">${esc(translated)}${original}</span>`;
   }
 
   function badges(p) {
@@ -69,7 +84,7 @@
           <span class="text-terracotta">● ${esc(t("spotlight_label"))}</span>
           <span class="bg-paper-cream px-2 py-1 rounded">arXiv:${esc(p.arxiv)}</span>
         </div>
-        <h2 class="font-display font-black text-2xl leading-tight mt-5">${esc(p.title)}</h2>
+        <h2 class="font-display font-black text-2xl leading-tight mt-5">${esc(titleOf(p))}</h2>
         <p class="text-sm text-black/60 mt-4 leading-relaxed">${esc(summaryOf(p))}</p>
         <div class="flex items-center justify-between mt-5 text-xs">
           <span class="font-mono text-black/50">${esc(p.date)}</span>
@@ -84,14 +99,14 @@
     byId("spotlightMobile").innerHTML = html;
   }
 
-  // ---------- Grid ----------
+  // ---------- Discover grid ----------
   function renderGrid() {
     const visible = PAPERS.filter((p) => filter === "all" || p.level === filter);
     byId("paperGrid").innerHTML = visible.map((p) => `
       <article class="bg-white border border-black/10 rounded-2xl p-6 flex flex-col gap-4 hover:border-black/30 transition">
         <div class="flex flex-wrap gap-2">${badges(p)}</div>
         <p class="text-[11px] font-mono text-black/50">arXiv:${esc(p.arxiv)} · ${esc(p.date)}</p>
-        <h3 class="font-display font-black text-xl leading-tight uppercase">${esc(p.title)}</h3>
+        <h3 class="font-display font-black text-xl leading-tight uppercase">${titleBlock(p, "")}</h3>
         <p class="text-sm text-black/60 leading-relaxed">${esc(summaryOf(p))}</p>
         <div class="mt-auto pt-4 border-t border-black/10 flex items-center justify-between">
           <button class="open-btn text-xs font-mono font-bold uppercase text-terracotta hover:underline cursor-pointer" data-id="${p.id}">${esc(t("inspect"))} ↗</button>
@@ -110,14 +125,36 @@
     });
   }
 
-  // ---------- Labs ----------
+  // ---------- Opportunities (Labs tab) ----------
+  function renderOpportunities() {
+    byId("oppGrid").innerHTML = OPPORTUNITIES.map((o) => {
+      const isOpen = o.status === "open";
+      const when = isOpen
+        ? `<div><dt class="text-[10px] uppercase text-cream/50">${esc(t("opp_deadline"))}</dt><dd class="mt-1">${esc(o.deadline)} · ${esc(o.time)}</dd></div>`
+        : `<div><dt class="text-[10px] uppercase text-cream/50">${esc(t("opp_deadline"))}</dt><dd class="mt-1">${esc(t("opp_rolling"))}</dd></div>`;
+      return `
+      <article class="rounded-2xl bg-[#141418] border border-white/10 p-6 flex flex-col gap-4">
+        <div class="flex flex-wrap gap-2">
+          <span class="text-[10px] font-mono font-bold uppercase px-2 py-0.5 rounded-full ${STATUS_STYLES[o.status]}">${esc(statusLabel(o.status))}</span>
+          <span class="text-[10px] font-mono font-bold uppercase px-2 py-0.5 rounded-full border border-white/20">${esc(levelLabel(o.level))}</span>
+        </div>
+        <h3 class="font-display font-black text-xl leading-tight uppercase">${esc(o.name)}</h3>
+        <p class="text-sm text-cream/70 leading-relaxed">${esc(summaryOf(o))}</p>
+        <dl class="grid grid-cols-2 gap-3 text-sm font-mono border-t border-white/10 pt-4">
+          ${when}
+          <div><dt class="text-[10px] uppercase text-cream/50">${esc(t("opp_amount"))}</dt><dd class="mt-1">${esc(o.amount)}</dd></div>
+        </dl>
+        <a href="${esc(o.url)}" target="_blank" rel="noopener" class="mt-auto text-center py-2.5 rounded-full border border-white/30 text-xs font-bold tracking-widest uppercase hover:bg-cream hover:text-obsidian transition">${esc(t("opp_open_link"))}</a>
+      </article>`;
+    }).join("");
+  }
+
   function renderLabs() {
     byId("labsList").innerHTML = PAPERS.map((p) => `
       <li class="py-5 flex flex-col md:flex-row md:items-center md:justify-between gap-2">
         <div>
           <p class="font-display font-bold uppercase text-sm">${esc(p.authors)}</p>
-          <p class="text-xs text-cream/60 mt-1">${esc(p.title)}</p>
-          <p class="text-sm text-cream/80 mt-2 leading-relaxed">${esc(summaryOf(p))}</p>
+          <p class="text-xs text-cream/60 mt-1">${esc(titleOf(p))}</p>
         </div>
         <a href="https://arxiv.org/abs/${esc(p.arxiv)}" target="_blank" rel="noopener" class="text-xs font-mono font-bold uppercase text-terracotta-light underline shrink-0">arXiv:${esc(p.arxiv)} ↗</a>
       </li>`).join("");
@@ -158,7 +195,7 @@
         <li class="py-5 flex flex-col md:flex-row md:items-center md:justify-between gap-3">
           <div>
             <div class="flex flex-wrap gap-2 mb-2">${badges(p)}</div>
-            <p class="font-display font-bold uppercase text-sm leading-snug">${esc(p.title)}</p>
+            <p class="font-display font-bold uppercase text-sm leading-snug">${titleBlock(p, "")}</p>
             <p class="text-[11px] font-mono text-black/50 mt-1">arXiv:${esc(p.arxiv)} · ${esc(p.date)}</p>
           </div>
           <div class="flex gap-3 shrink-0">
@@ -176,7 +213,7 @@
     openId = id;
     byId("drawerLevel").className = `text-[10px] font-mono font-bold uppercase px-2.5 py-1 rounded-full border ${LEVEL_STYLES[p.level]}`;
     byId("drawerLevel").textContent = levelLabel(p.level);
-    byId("drawerTitle").textContent = p.title;
+    byId("drawerTitle").textContent = titleOf(p);
     byId("drawerAuthors").textContent = `${t("lbl_authors")}: ${p.authors}`;
     byId("drawerStatus").textContent = statusLabel(p.status);
     byId("drawerDate").textContent = p.date;
@@ -291,6 +328,7 @@
     renderSpotlight();
     renderFilters();
     renderGrid();
+    renderOpportunities();
     renderLabs();
     renderSandbox();
     renderLibrary();
