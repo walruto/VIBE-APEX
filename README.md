@@ -214,7 +214,7 @@ index 0000000..2d537ca
 +        <h2 class="font-display font-black text-2xl leading-tight mt-5">${esc(p.title)}</h2>
 +        <p class="text-sm text-black/60 mt-4 leading-relaxed">${esc(summaryOf(p))}</p>
 +        <div class="flex items-center justify-between mt-5 text-xs">
-... (794 more lines; full diff at the commit link above and in docs/CODE-CHANGES.md)
+... (794 more lines; full diff at the commit link and in docs/CODE-CHANGES.md)
 ````
 
 #### B2
@@ -231,7 +231,7 @@ index 0000000..2d537ca
 
 **What it did:** Pushed the site to the empty repo, with a commit message that credits only the repo URL.
 
-**Code generated:** same commit as B1 (see below).
+**Code generated:** same commit as B1 (see above).
 
 #### B4
 
@@ -361,7 +361,7 @@ index 0704a1e..bf7c2f9 100644
 +      return `
 +      <article class="rounded-2xl bg-[#141418] border border-white/10 p-6 flex flex-col gap-4">
 +        <div class="flex flex-wrap gap-2">
-... (298 more lines; full diff at the commit link above and in docs/CODE-CHANGES.md)
+... (298 more lines; full diff at the commit link and in docs/CODE-CHANGES.md)
 ````
 
 #### B8
@@ -983,7 +983,7 @@ index 3580178..0000000
 -  }
 -
 -  function paperById(id) {
-... (1467 more lines; full diff at the commit link above and in docs/CODE-CHANGES.md)
+... (1467 more lines; full diff at the commit link and in docs/CODE-CHANGES.md)
 ````
 
 #### B17
@@ -1149,7 +1149,7 @@ index 1b2abf9..aa1c53d 100644
  
  ### Exact code for each prompt
  
-```
+````
 
 #### B19
 
